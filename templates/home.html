@@ -1,0 +1,26 @@
+{% extends "base_general.html" %}
+
+{% block titulo %} Home Page {% endblock %}
+
+{% block contenido %}
+
+    {% if user.is_authenticated %}
+
+    <h1> Hola {{user.username}}</h1>
+    <a href="{% url 'password_change' %}">Cambiar Contraseña</a>
+
+        {% if user.is_superuser %}
+        <h1>Hola eres super usuario</h1>
+        {% else %}
+        <h1>Hola eres usuario básico</h1>
+        {% endif %}
+
+    {% else %}
+
+    <p>Tu no estas logeado</p>
+    <a href="{% url 'login' %}">Log in</a>
+    <a >Recuperar contraseña</a>
+
+    {% endif %}
+
+{% endblock %}
