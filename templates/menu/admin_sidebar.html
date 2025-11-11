@@ -18,7 +18,7 @@
 
   <!-- Nav Item - Dashboard -->
   <li class="nav-item">
-    <a class="nav-link" href="#">
+    <a class="nav-link" href="{% url 'home' %}">
       <i class="fas fa-fw fa-tachometer-alt"></i>
       <span>Inicio</span></a
     >
@@ -51,7 +51,7 @@
     >
       <div class="bg-white py-2 collapse-inner rounded">
         <h6 class="collapse-header">Opciones:</h6>
-        <a class="collapse-item" href="#">Listado</a>
+        <a class="collapse-item" href="{% url 'employees_list' %}">Listado</a>
         <a class="collapse-item" href="#">Registrar</a>
         <a class="collapse-item" href="#">Editar</a>
         <a class="collapse-item" href="#">Desactivar</a>

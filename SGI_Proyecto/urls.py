@@ -25,4 +25,5 @@ urlpatterns = [
     path("accounts/", include("SGI_app.urls")),
     path("accounts/", include("django.contrib.auth.urls")),
     path("", home, name="home"),
+    path("lista-de-empleados/", employees_list, name="employees_list"),
 ]

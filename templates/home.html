@@ -1,40 +1,35 @@
 {% extends "base_general.html" %}
-
 {% load static %}
-
-{% block titulo %} Home Page {% endblock %}
-
+{% block titulo %} SGI - Inicio {% endblock %}
 {% block contenido %}
 
-    {% if user.is_authenticated %}
+{% if user.is_authenticated %}
+{% if user.is_superuser %}
+<table>
+  <tr>
+    <td>
+      <img
+        class="img-profile rounded-circle"
+        src="{% static 'img/undraw_profile.svg' %}"
+        width="128px"
+      />
+    </td>
+    <td>
+      <h1>Bienvenido, admin.</h1>
+    </td>
+  </tr>
+</table>
+{% else %}
+<h1>Hola eres VENDEDOR</h1>
+{% endif %}
 
-        {% if user.is_superuser %}
-            <table>
-                <tr>
-                    <td>
-                        <img
-                        class="img-profile rounded-circle"
-                        src="{% static 'img/undraw_profile.svg' %}"
-                        width="128px"
-                        />
-                    </td>
-                    <td>
-                        <h1>Bienvenido, admin.</h1>
-                    </td>
-                </tr>
-            </table>
-        {% else %}
-            <h1>Hola eres VENDEDOR</h1>
-        {% endif %}
+<br><a href="{% url 'password_change' %}">Cambiar Contraseña</a>
 
-        <a href="{% url 'password_change' %}">Cambiar Contraseña</a>
+{% else %}
 
-    {% else %}
+<p>No has iniciado sesión</p>
+<a href="{% url 'login' %}">Iniciar sesión</a>
 
-    <p>Tu no estas logeado</p>
-    <a href="{% url 'login' %}">Log in</a>
-    <a >Recuperar contraseña</a>
-
-    {% endif %}
+{% endif %}
 
 {% endblock %}
