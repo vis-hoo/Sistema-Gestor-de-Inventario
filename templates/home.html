@@ -1,19 +1,33 @@
 {% extends "base_general.html" %}
 
+{% load static %}
+
 {% block titulo %} Home Page {% endblock %}
 
 {% block contenido %}
 
     {% if user.is_authenticated %}
 
-    <h1> Hola {{user.username}}</h1>
-    <a href="{% url 'password_change' %}">Cambiar Contraseña</a>
-
         {% if user.is_superuser %}
-        <h1>Hola eres super usuario</h1>
+            <table>
+                <tr>
+                    <td>
+                        <img
+                        class="img-profile rounded-circle"
+                        src="{% static 'img/undraw_profile.svg' %}"
+                        width="128px"
+                        />
+                    </td>
+                    <td>
+                        <h1>Bienvenido, admin.</h1>
+                    </td>
+                </tr>
+            </table>
         {% else %}
-        <h1>Hola eres usuario básico</h1>
+            <h1>Hola eres VENDEDOR</h1>
         {% endif %}
+
+        <a href="{% url 'password_change' %}">Cambiar Contraseña</a>
 
     {% else %}
 

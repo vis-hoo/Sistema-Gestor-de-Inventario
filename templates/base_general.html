@@ -32,7 +32,13 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
       <!-- Sidebar -->
-      {% include 'menu/sidebar.html' %}
+      {% if user.is_authenticated %}
+        {% if user.is_superuser %}
+          {% include 'menu/admin_sidebar.html' %}
+        {% else %}
+          {% include 'menu/employee_sidebar.html' %}
+        {% endif %}
+      {% endif %}
       <!-- End of Sidebar -->
 
       <!-- Content Wrapper -->
