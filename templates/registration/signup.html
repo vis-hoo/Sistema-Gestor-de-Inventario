@@ -5,10 +5,10 @@
 {% block contenido %}
 
 <h2>Sign in</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{form.as_p}}
-        <button type="submit">Sign in</button>
-    </form>
+<form method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit">Sign in</button>
+</form>
 
 {% endblock %}
