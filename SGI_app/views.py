@@ -4,6 +4,9 @@ from django.views.generic import CreateView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from .models import Empleado
+from .form import EmpleadoRegistroForm
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 class SignUpView(CreateView):
     form_class = UserCreationForm
@@ -20,3 +23,21 @@ def employees_list(request):
     empleados = Empleado.objects.all()
     data = { 'empleados': empleados }
     return render(request, "employees_control/employees_list.html", data)
+
+
+
+@login_required
+def employees_registration(request):
+    form = EmpleadoRegistroForm()
+    
+    # Solo se ejecuta cuando se apreta registrar
+    if request.method == 'POST':
+        form = EmpleadoRegistroForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('employees_list'))                  
+
+    data = {'form' : form,
+            'titulo': 'Registrar Empleado',
+            'txtBoton':'Registrar'}
+    return render(request, 'employees_control/employees_register.html' ,data)
